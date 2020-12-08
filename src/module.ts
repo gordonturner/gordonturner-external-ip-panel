@@ -1,42 +1,16 @@
-import { PanelPlugin } from "@grafana/data";
-import { SimpleOptions } from "./types";
-import { SimplePanel } from "./SimplePanel";
+import { PanelPlugin } from '@grafana/data';
+import { ExternalIpPanel } from './ExternalIpPanel';
+import { ExternalIpOptions } from './types';
+import { DEFAULT_API_URL } from './constants';
 
-export const plugin = new PanelPlugin<SimpleOptions>(
-  SimplePanel
-).setPanelOptions(builder => {
+export const plugin = new PanelPlugin<ExternalIpOptions>(ExternalIpPanel).setPanelOptions(builder => {
   return builder
     .addTextInput({
-      path: "text",
-      name: "Simple text option",
-      description: "Description of panel option",
-      defaultValue: "Default value of text input option"
-    })
-    .addBooleanSwitch({
-      path: "showSeriesCount",
-      name: "Show series counter",
-      defaultValue: false
-    })
-    .addRadio({
-      path: "seriesCountSize",
-      defaultValue: "sm",
-      name: "Series counter size",
+      path: 'apiUrl',
+      name: 'API URL',
+      description: 'URL to the Listlist API.',
       settings: {
-        options: [
-          {
-            value: "sm",
-            label: "Small"
-          },
-          {
-            value: "md",
-            label: "Medium"
-          },
-          {
-            value: "lg",
-            label: "Large"
-          }
-        ]
+        placeholder: DEFAULT_API_URL,
       },
-      showIf: config => config.showSeriesCount
-    });
+    })
 });

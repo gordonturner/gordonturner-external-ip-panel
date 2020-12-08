@@ -1,9 +1,9 @@
 {
   "type": "panel",
-  "name": "gordonturner-external-ip-panel-prototype",
+  "name": "external-ip-panel-prototype",
   "id": "gordonturner-gordonturner-external-ip-panel-prototype",
   "info": {
-    "description": "N/A",
+    "description": "",
     "author": {
       "name": "Gordon Turner",
       "url": "gordonturner.com"
@@ -30,5 +30,6 @@
   "dependencies": {
     "grafanaVersion": "7.0.x",
     "plugins": []
-  }
+  },
+  "skipDataQuery": true
 }

@@ -1,7 +1,8 @@
-type SeriesSize = "sm" | "md" | "lg";
-
-export interface SimpleOptions {
-  text: string;
-  showSeriesCount: boolean;
-  seriesCountSize: SeriesSize;
+export interface ExternalIpOptions {
+  apiUrl?: string;
+  apiKey?: string;
 }
+
+export const defaults: ExternalIpOptions = {
+  // Default values
+};
