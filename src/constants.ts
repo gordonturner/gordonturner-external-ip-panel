@@ -1,1 +1,1 @@
-export const DEFAULT_API_URL = 'https://ipinfo.io/json?token=XXXXX';
+export const DEFAULT_API_URL = 'https://ipinfo.io/json?token=67f2e365923e27';
