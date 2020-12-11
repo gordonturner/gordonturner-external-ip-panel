@@ -1,6 +1,6 @@
 export interface ExternalIpOptions {
   apiUrl?: string;
-  apiKey?: string;
+  refreshInMs?: number;
 }
 
 export const defaults: ExternalIpOptions = {

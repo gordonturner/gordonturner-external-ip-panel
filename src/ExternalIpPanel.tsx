@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { PanelProps } from '@grafana/data';
 import { stylesFactory } from '@grafana/ui';
 import { css, cx } from 'emotion';
-import { DEFAULT_API_URL } from './constants';
+import { DEFAULT_API_URL, DEFAULT_REFRESH_IN_MS } from './constants';
 import { ExternalIpOptions } from './types';
 import axios from 'axios';
 
@@ -12,11 +12,8 @@ export const ExternalIpPanel: React.FC<Props> = ({ options, data, width, height 
   const styles = getStyles();
   const [externalIp, updateExternalIp] = React.useState<String>('0.0.0.0');
 
-  // HACK: Trick useEffect() by incrementing a counter on a timer.
-  const [count, setCount] = React.useState(0);
-
-  // Logging when this is called by Grafana.
-  console.log("Called here");
+  let timerID: any;
+  const timerRefresh = options.refreshInMs ? options.refreshInMs : DEFAULT_REFRESH_IN_MS;
 
   /**
    * Enabling the setCount() causes an error:
@@ -46,34 +43,18 @@ export const ExternalIpPanel: React.FC<Props> = ({ options, data, width, height 
   };
 
   /**
-   * Accepts a function that contains imperative, possibly effectful code.
-   *
-   * Mutations, subscriptions, timers, logging, and other side effects are not allowed
-   * inside the main body of a function component (referred to as React’s render phase).
-   * Doing so will lead to confusing bugs and inconsistencies in the UI.
-   *
-   * Instead, use useEffect. The function passed to useEffect will run after the render
-   * is committed to the screen. Think of effects as an escape hatch from React’s purely
-   * functional world into the imperative world.
-   *
-   * - Reference:
-   * https://reactjs.org/docs/hooks-reference.html#useeffect
-   *
-   * In this useEffect hook, an empty array [] is the second argument so the code inside
-   * useEffect will run only once when the component is mounted.  This is functionally
-   * similar to componentDidMount lifecycle method in react hooks.
+   * On page render, make an initial request for the data from the API and then set a timer to refresh it.
    */
   useEffect(() => {
     const requestDataAsync = async () => {
       await requestData();
     };
     requestDataAsync();
-    // HACK: Trick useEffect() by incrementing a counter on a timer.
-    setTimeout(() => {
-      setCount(count + 1);
-      console.log(count);
-    }, 30000);
-  }, [count]);
+    timerID = setInterval(
+      () => requestDataAsync(),
+      timerRefresh
+    );
+  }, [clearInterval(timerID)]);
 
   return (
     <div

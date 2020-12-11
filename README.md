@@ -24,7 +24,7 @@ yarn watch
 
 ```
 cd gordonturner-listlist-panel
-docker run -d -p 3000:3000 -v "$(pwd)"/dist:/var/lib/grafana/plugins --name=gordonturner-listlist-panel grafana/grafana:7.3.2
+docker run -d -p 3000:3000 -v "$(pwd)"/dist:/var/lib/grafana/plugins --name=gordonturner-external-ip-panel grafana/grafana:7.3.2
 ```
 
 - NOTE: Check latest version here:

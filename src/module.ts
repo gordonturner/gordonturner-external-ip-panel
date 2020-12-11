@@ -1,7 +1,7 @@
 import { PanelPlugin } from '@grafana/data';
 import { ExternalIpPanel } from './ExternalIpPanel';
 import { ExternalIpOptions } from './types';
-import { DEFAULT_API_URL } from './constants';
+import { DEFAULT_API_URL, DEFAULT_REFRESH_IN_MS } from './constants';
 
 export const plugin = new PanelPlugin<ExternalIpOptions>(ExternalIpPanel).setPanelOptions(builder => {
   return builder
@@ -13,4 +13,12 @@ export const plugin = new PanelPlugin<ExternalIpOptions>(ExternalIpPanel).setPan
         placeholder: DEFAULT_API_URL,
       },
     })
+    .addTextInput({
+      path: 'refreshInMs',
+      name: 'Refresh',
+      description: 'Refresh in Milliseconds.',
+      settings: {
+        placeholder: DEFAULT_REFRESH_IN_MS.toString(),
+      }
+    });
 });

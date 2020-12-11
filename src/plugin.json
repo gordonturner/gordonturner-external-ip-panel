@@ -1,7 +1,7 @@
 {
   "type": "panel",
-  "name": "external-ip-panel-prototype",
-  "id": "gordonturner-gordonturner-external-ip-panel-prototype",
+  "name": "external-ip-panel",
+  "id": "gordonturner-external-ip-panel",
   "info": {
     "description": "",
     "author": {
@@ -16,11 +16,11 @@
     "links": [
       {
         "name": "Website",
-        "url": "https://github.com/grafana/simple-react-panel"
+        "url": ""
       },
       {
         "name": "License",
-        "url": "https://github.com/grafana/simple-react-panel/blob/master/LICENSE"
+        "url": ""
       }
     ],
     "screenshots": [],
